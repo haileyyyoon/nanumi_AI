@@ -12,7 +12,7 @@
   const I18N = {
     en: {
       lang: 'en',
-      title: 'Comfort Women History Archive',
+      title: 'House of Sharing Chatbot',
       intro:
         'This archive answers questions using testimony, historical records, and research ' +
         'gathered by the House of Sharing (나눔의 집) and related sources documenting Japan’s ' +
@@ -39,7 +39,7 @@
     },
     ko: {
       lang: 'ko',
-      title: '일본군 ‘위안부’ 역사관',
+      title: '나눔의 집 챗봇',
       intro:
         '이 아카이브는 나눔의 집과 관련 자료가 수집한 증언, 역사 기록, 연구 자료를 바탕으로 일본군 ' +
         '위안부(전시 군 성노예) 제도에 관한 질문에 답합니다. 답변은 오직 이 아카이브의 자료에만 ' +
@@ -64,7 +64,7 @@
     },
     ja: {
       lang: 'ja',
-      title: '日本軍『慰安婦』歴史館',
+      title: 'ナヌムの家チャットボット',
       intro:
         'このアーカイブは、ナヌムの家（House of Sharing）や関連資料が収集した証言・歴史記録・研究に基づき、' +
         '日本の戦時における軍性奴隷制度に関する質問にお答えします。回答はこのアーカイブの資料のみに基づいており、' +
@@ -89,7 +89,7 @@
     },
     zh: {
       lang: 'zh',
-      title: '日军‘慰安妇’历史馆',
+      title: '分享之家聊天机器人',
       intro:
         '本资料库依据分享之家（나눔의 집）及相关来源收集的证词、历史记录与研究，回答有关日本战时军队性奴役' +
         '制度的问题。回答仅依据本资料库的内容；如果记录中没有相关信息，助手会如实说明。',
@@ -112,7 +112,7 @@
     },
     es: {
       lang: 'es',
-      title: 'Archivo Histórico de las Mujeres de Consuelo',
+      title: 'Chatbot de la Casa del Compartir',
       intro:
         'Este archivo responde preguntas a partir de testimonios, registros históricos e investigaciones ' +
         'reunidos por la Casa del Compartir (나눔의 집) y fuentes relacionadas que documentan el sistema de ' +
@@ -139,7 +139,7 @@
     },
     fr: {
       lang: 'fr',
-      title: 'Archives historiques des « femmes de réconfort »',
+      title: 'Chatbot de la Maison du Partage',
       intro:
         'Ces archives répondent aux questions à partir de témoignages, de documents historiques et de ' +
         'recherches rassemblés par la Maison du Partage (나눔의 집) et des sources connexes documentant le ' +
@@ -166,7 +166,7 @@
     },
     de: {
       lang: 'de',
-      title: 'Geschichtsarchiv der „Trostfrauen“',
+      title: 'House-of-Sharing-Chatbot',
       intro:
         'Dieses Archiv beantwortet Fragen auf der Grundlage von Zeugenaussagen, historischen Aufzeichnungen ' +
         'und Forschungen, die vom House of Sharing (나눔의 집) und verwandten Quellen zum System der ' +
