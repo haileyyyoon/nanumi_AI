@@ -1,6 +1,5 @@
-Flask
-openai
-python-dotenv
-gunicorn
-requests
-pinecone
+Flask==3.0.3
+openai==1.51.0
+python-dotenv==1.0.1
+gunicorn==22.0.0
+pinecone==5.3.1

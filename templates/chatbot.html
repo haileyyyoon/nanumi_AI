@@ -1,108 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Comfort Women Chatbot</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7fa;
-            margin: 0;
-            padding: 0;
-        }
-        .chat-container {
-            max-width: 600px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 24px;
-        }
-        .chat-log {
-            height: 350px;
-            overflow-y: auto;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            padding: 16px;
-            background: #fafbfc;
-            margin-bottom: 16px;
-        }
-        .chat-message {
-            margin-bottom: 12px;
-        }
-        .user {
-            color: #0074d9;
-            font-weight: bold;
-        }
-        .bot {
-            color: #2ecc40;
-            font-weight: bold;
-        }
-        .input-row {
-            display: flex;
-        }
-        input[type="text"] {
-            flex: 1;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 18px;
-            border-radius: 6px;
-            border: none;
-            background: #0074d9;
-            color: #fff;
-            font-size: 16px;
-            margin-left: 8px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #005fa3;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comfort Women History Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="chat-container">
-        <h2>Chatbot</h2>
-        <div class="chat-log" id="chat-log"></div>
-        <form id="chat-form" class="input-row">
-            <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off" required />
-            <button type="submit">Send</button>
-        </form>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="butterfly" viewBox="0 0 120 90" aria-hidden="true">
+          <g class="butterfly-wings">
+            <path class="wing wing-left" d="M58 45 C40 10, 8 8, 4 28 C0 48, 26 58, 58 48 Z"/>
+            <path class="wing wing-left-lower" d="M58 48 C36 52, 18 70, 26 82 C34 92, 54 76, 58 52 Z"/>
+            <path class="wing wing-right" d="M62 45 C80 10, 112 8, 116 28 C120 48, 94 58, 62 48 Z"/>
+            <path class="wing wing-right-lower" d="M62 48 C84 52, 102 70, 94 82 C86 92, 66 76, 62 52 Z"/>
+          </g>
+          <line class="body" x1="60" y1="30" x2="60" y2="58" />
+        </svg>
+        <div class="brand-text">
+          <p class="brand-kr">일본군 &lsquo;위안부&rsquo; 역사관</p>
+          <h1 data-i18n="title">Comfort Women History Archive</h1>
+        </div>
+      </div>
+      <div class="header-controls">
+        <label class="lang-field">
+          <span class="visually-hidden" data-i18n="languageLabel">Answer language</span>
+          <select id="lang-select" aria-label="Answer language">
+            <option value="auto">🌐 Auto-detect</option>
+            <option value="English">English</option>
+            <option value="Korean">한국어</option>
+            <option value="Japanese">日本語</option>
+            <option value="Chinese (Simplified)">中文</option>
+            <option value="Spanish">Español</option>
+            <option value="French">Français</option>
+            <option value="German">Deutsch</option>
+          </select>
+        </label>
+        <button id="reset-btn" class="ghost-btn" type="button" data-i18n="reset" title="Start a new conversation">
+          New conversation
+        </button>
+      </div>
     </div>
-    <script>
-        const chatLog = document.getElementById('chat-log');
-        const chatForm = document.getElementById('chat-form');
-        const userInput = document.getElementById('user-input');
+  </header>
 
-        function appendMessage(sender, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'chat-message';
-            msgDiv.innerHTML = `<span class="${sender}">${sender === 'user' ? 'You' : 'Bot'}:</span> ${text}`;
-            chatLog.appendChild(msgDiv);
-            chatLog.scrollTop = chatLog.scrollHeight;
-        }
+  <main class="chat-shell">
 
-        chatForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const question = userInput.value.trim();
-            if (!question) return;
-            appendMessage('user', question);
-            userInput.value = '';
-            try {
-                const res = await fetch('/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ question })
-                });
-                const data = await res.json();
-                appendMessage('bot', data.response || 'Sorry, no answer found.');
-            } catch (err) {
-                appendMessage('bot', 'Error connecting to server.');
-            }
-        });
-    </script>
+    <div class="intro-plaque">
+      <p data-i18n="intro">
+        This archive answers questions using testimony, historical records, and
+        research gathered by the House of Sharing (나눔의 집) and related sources
+        documenting Japan&rsquo;s wartime military sexual slavery system. Answers
+        are drawn strictly from the archive &mdash; if something isn&rsquo;t in the
+        record, the assistant will say so.
+      </p>
+    </div>
+
+    <div class="chat-log" id="chat-log" aria-live="polite">
+      <div class="msg msg-bot">
+        <span class="msg-label" data-i18n="botLabel">Archive</span>
+        <div class="msg-bubble" data-i18n="welcome">
+          Welcome. You can ask about survivors&rsquo; testimonies, the history of
+          the comfort station system, the Wednesday Demonstrations, government
+          responses, or the House of Sharing itself. What would you like to know?
+        </div>
+      </div>
+    </div>
+
+    <div class="suggestions" id="suggestions">
+      <button class="chip" type="button">Who was Kim Hak-soon?</button>
+      <button class="chip" type="button">What was the Kono Statement?</button>
+      <button class="chip" type="button">What is the House of Sharing?</button>
+      <button class="chip" type="button">Where is the House of Sharing located?</button>
+    </div>
+
+    <form id="chat-form" class="input-row" autocomplete="off">
+      <input
+        type="text"
+        id="user-input"
+        placeholder="Ask a question about this history..."
+        aria-label="Type your question"
+        required
+      />
+      <button type="submit" class="send-btn" aria-label="Send question">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L21 3l-6.5 18-3.8-7.7L3 11.5z"/></svg>
+      </button>
+    </form>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      August 14 is South Korea&rsquo;s national memorial day for comfort women
+      victims, marking Kim Hak-soon&rsquo;s 1991 testimony. Learn more at
+      <a href="https://nanum.org" target="_blank" rel="noopener">nanum.org</a>.
+    </p>
+  </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
