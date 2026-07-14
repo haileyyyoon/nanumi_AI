@@ -222,6 +222,18 @@ def chatbot_response(
                 "name": func_name,
                 "content": combined_context or "No relevant information was found.",
             },
+            # Final reminder so the format rule outweighs any longer answers
+            # that may remain in the conversation history.
+            {
+                "role": "system",
+                "content": (
+                    "Format reminder: reply with ONE paragraph of three to five "
+                    "sentences that answers only what was asked, then (optionally) "
+                    "up to three short follow-up questions after a single blank "
+                    "line. Never write more than one paragraph, even if earlier "
+                    "answers in this conversation were longer."
+                ),
+            },
         ]
     )
 
