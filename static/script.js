@@ -24,15 +24,16 @@
         'testimonies, the history of the comfort station system, the Wednesday Demonstrations, ' +
         'government responses, or the House of Sharing itself. What would you like to know?',
       reset: 'New conversation',
-      placeholder: 'Ask a question about this history…',
+      placeholder: 'Please feel free to ask me anything about this history…',
       botLabel: 'Nanumi',
       youLabel: 'You',
       languageLabel: 'Answer language',
+      suggestionsLabel: 'Sample questions',
       suggestions: [
         'Who were the Japanese military ‘comfort women’ victims?',
+        'Tell me about the House of Sharing',
         'Who was Kim Hak-soon?',
         'What was the Kono Statement?',
-        'Tell me about the House of Sharing',
       ],
       noAnswer: 'Sorry, no answer was found.',
       errorGeneric: 'Something went wrong. Please try again.',
@@ -50,15 +51,16 @@
         '제도의 역사, 수요시위, 정부의 대응, 나눔의 집에 대해 질문하실 수 있습니다. ' +
         '무엇이 궁금하신가요?',
       reset: '새 대화',
-      placeholder: '이 역사에 대해 질문해 주세요…',
+      placeholder: '궁금한 점이 있으시면 편하게 질문해 주세요…',
       botLabel: '나누미',
       youLabel: '나',
       languageLabel: '답변 언어',
+      suggestionsLabel: '예시 질문',
       suggestions: [
         '일본군 위안부 피해자란?',
+        '나눔의 집에 대해서 알려줘',
         '김학순은 누구셨나요?',
         '고노 담화는 무엇이었나요?',
-        '나눔의 집에 대해서 알려줘',
       ],
       noAnswer: '죄송합니다. 답변을 찾지 못했습니다.',
       errorGeneric: '문제가 발생했습니다. 다시 시도해 주세요.',
@@ -75,15 +77,16 @@
         'こんにちは。ナヌムの家のチャットボット、Nanumiです。被害者の方々の証言、慰安所制度の歴史、' +
         '水曜デモ、政府の対応、ナヌムの家についてご質問いただけます。何をお知りになりたいですか？',
       reset: '新しい会話',
-      placeholder: 'この歴史について質問してください…',
+      placeholder: '気になることがあれば、お気軽にご質問ください…',
       botLabel: 'Nanumi',
       youLabel: 'あなた',
       languageLabel: '回答の言語',
+      suggestionsLabel: '質問の例',
       suggestions: [
         '日本軍「慰安婦」被害者とは？',
+        'ナヌムの家について教えてください',
         '金学順（キム・ハクスン）さんはどのような方でしたか？',
         '河野談話とは何でしたか？',
-        'ナヌムの家について教えてください',
       ],
       noAnswer: '申し訳ありません。回答が見つかりませんでした。',
       errorGeneric: '問題が発生しました。もう一度お試しください。',
@@ -99,15 +102,16 @@
         '您好，我是分享之家的聊天机器人 Nanumi。您可以询问幸存者的证词、慰安所制度的历史、' +
         '周三示威、政府的回应，或分享之家本身。您想了解什么？',
       reset: '新对话',
-      placeholder: '就这段历史提出问题…',
+      placeholder: '如果您有任何问题，欢迎随时提问…',
       botLabel: 'Nanumi',
       youLabel: '您',
       languageLabel: '回答语言',
+      suggestionsLabel: '示例问题',
       suggestions: [
         '什么是日军“慰安妇”受害者？',
+        '请介绍一下分享之家',
         '金学顺是谁？',
         '河野谈话是什么？',
-        '请介绍一下分享之家',
       ],
       noAnswer: '抱歉，未找到答案。',
       errorGeneric: '出现问题，请重试。',
@@ -128,15 +132,16 @@
         'consuelo», las Manifestaciones de los Miércoles, las respuestas de los gobiernos o la ' +
         'propia Casa del Compartir. ¿Qué le gustaría saber?',
       reset: 'Nueva conversación',
-      placeholder: 'Haga una pregunta sobre esta historia…',
+      placeholder: 'Si tiene alguna pregunta, no dude en preguntarme…',
       botLabel: 'Nanumi',
       youLabel: 'Usted',
       languageLabel: 'Idioma de la respuesta',
+      suggestionsLabel: 'Preguntas de ejemplo',
       suggestions: [
         '¿Quiénes fueron las víctimas del sistema de «mujeres de consuelo»?',
+        'Cuénteme sobre la Casa del Compartir',
         '¿Quién fue Kim Hak-soon?',
         '¿Qué fue la Declaración de Kono?',
-        'Cuénteme sobre la Casa del Compartir',
       ],
       noAnswer: 'Lo sentimos, no se encontró ninguna respuesta.',
       errorGeneric: 'Algo salió mal. Inténtelo de nuevo.',
@@ -157,15 +162,16 @@
         'réconfort », les Manifestations du mercredi, les réponses des gouvernements ou la ' +
         'Maison du Partage elle-même. Que souhaitez-vous savoir ?',
       reset: 'Nouvelle conversation',
-      placeholder: 'Posez une question sur cette histoire…',
+      placeholder: 'Si vous avez une question, n’hésitez pas à me la poser…',
       botLabel: 'Nanumi',
       youLabel: 'Vous',
       languageLabel: 'Langue de la réponse',
+      suggestionsLabel: 'Exemples de questions',
       suggestions: [
         'Qui étaient les victimes du système des « femmes de réconfort » ?',
+        'Parlez-moi de la Maison du Partage',
         'Qui était Kim Hak-soon ?',
         'Qu’était la déclaration de Kono ?',
-        'Parlez-moi de la Maison du Partage',
       ],
       noAnswer: 'Désolé, aucune réponse n’a été trouvée.',
       errorGeneric: 'Une erreur s’est produite. Veuillez réessayer.',
@@ -186,15 +192,16 @@
         'Mittwochsdemonstrationen, den Reaktionen der Regierungen oder dem House of Sharing ' +
         'selbst fragen. Was möchten Sie wissen?',
       reset: 'Neues Gespräch',
-      placeholder: 'Stellen Sie eine Frage zu dieser Geschichte…',
+      placeholder: 'Wenn Sie eine Frage haben, stellen Sie sie mir gerne…',
       botLabel: 'Nanumi',
       youLabel: 'Sie',
       languageLabel: 'Antwortsprache',
+      suggestionsLabel: 'Beispielfragen',
       suggestions: [
         'Wer waren die Opfer des „Trostfrauen“-Systems?',
+        'Erzählen Sie mir vom House of Sharing',
         'Wer war Kim Hak-soon?',
         'Was war die Kono-Erklärung?',
-        'Erzählen Sie mir vom House of Sharing',
       ],
       noAnswer: 'Leider wurde keine Antwort gefunden.',
       errorGeneric: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.',
@@ -289,7 +296,6 @@
     if (!question) return;
 
     appendMessage('user', question);
-    if (suggestions) suggestions.style.display = 'none';
 
     const loadingEl = appendLoading();
 
@@ -353,7 +359,6 @@
       }
       chatLog.innerHTML = '';
       appendMessage('bot', t.welcome);
-      if (suggestions) suggestions.style.display = 'flex';
     });
   }
 
