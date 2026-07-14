@@ -40,6 +40,8 @@ def _get_worksheet():
             _worksheet = spreadsheet.worksheet(WORKSHEET_NAME)
         except gspread.WorksheetNotFound:
             _worksheet = spreadsheet.add_worksheet(WORKSHEET_NAME, rows=1000, cols=4)
+
+        if not any(row for row in _worksheet.get_all_values()):
             _worksheet.append_row(["Timestamp (UTC)", "Language", "Question", "Answer"])
     except Exception:
         logger.exception("Could not connect to Google Sheets; logging disabled for this run.")
