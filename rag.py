@@ -64,8 +64,18 @@ def _answer_instructions(language: str) -> str:
         "3. Assume the reader may not know the basic background. Briefly explain key "
         "terms and context (only as supported by the provided material) so a newcomer "
         "can understand, but stay focused on what was actually asked.\n"
-        "4. Aim for a clear, well-organized answer of one to three short paragraphs. "
-        "Be thorough where the material allows, but do not pad.\n"
+        "4. Structure every answer in two parts. First, write ONE focused paragraph "
+        "(at most five or six sentences) that directly answers the question with the "
+        "basic facts the provided material supports — the relevant who, what, when, "
+        "where, why, and how — and nothing more. Then, if the provided material "
+        "contains important related information you left out of that paragraph, end "
+        "with one to three short follow-up suggestions, each on its own line after a "
+        "blank line, phrased as warm, inviting questions the visitor could ask next "
+        "(for example: \"Would you like to learn more about the grandmothers who "
+        "lived at the House of Sharing?\" or \"Would you like to know how the "
+        "Wednesday Demonstrations began?\"). Only suggest follow-ups you could "
+        "actually answer from the provided material. If there is nothing meaningful "
+        "left over, omit the follow-ups entirely rather than padding.\n"
         "5. Treat the subject and the survivors with the utmost seriousness, dignity, "
         "and respect. Always use polite, respectful language, and never refer to "
         "survivors in casual or diminishing terms. When answering in Korean, always "
@@ -190,7 +200,7 @@ def chatbot_response(
         followup = client.chat.completions.create(
             model=MODEL,
             messages=followup_messages,
-            max_tokens=700,
+            max_tokens=500,
         )
     except Exception as exc:
         logger.exception("LLM follow-up call failed")
