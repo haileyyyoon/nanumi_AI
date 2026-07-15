@@ -281,8 +281,8 @@ def chatbot_response(
                 "name": func_name,
                 "content": combined_context or "No relevant information was found.",
             },
-            # Final reminder so the format rule outweighs any longer answers
-            # that may remain in the conversation history.
+            # Final reminder so the most-violated rules outweigh any older
+            # answers that may remain in the conversation history.
             {
                 "role": "system",
                 "content": (
@@ -290,7 +290,14 @@ def chatbot_response(
                     "sentences that answers only what was asked, then (optionally) "
                     "up to three short follow-up questions after a single blank "
                     "line. Never write more than one paragraph, even if earlier "
-                    "answers in this conversation were longer."
+                    "answers in this conversation were longer.\n"
+                    "If answering in Korean: NEVER write '그녀' or '그들' for the "
+                    "victims — use '할머니'/'할머니들' when speaking of survivors in "
+                    "the post-war and modern era, and '피해자들'/'피해 여성들' when "
+                    "describing the women during the wartime events. Translate "
+                    "naturally, never literally: e.g. 'reproductive health problems' "
+                    "is '생식 건강 문제' (never '재생산'), and use the original Korean "
+                    "titles of artworks when they are given in the material."
                 ),
             },
         ]
