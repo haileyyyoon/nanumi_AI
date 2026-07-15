@@ -38,6 +38,9 @@
       footerDisclaimer:
         'Answers are AI-generated from the museum’s records and may contain errors. ' +
         'Please contact the House of Sharing to confirm important details.',
+      reportLabel: 'Report an issue',
+      reportDone: 'Reported — thank you',
+      errorRateLimit: 'Too many requests right now. Please wait a moment and try again.',
       noAnswer: 'Sorry, no answer was found.',
       errorGeneric: 'Something went wrong. Please try again.',
       errorNetwork: 'Could not reach the server. Please check your connection and try again.',
@@ -68,6 +71,9 @@
       footerDisclaimer:
         '답변은 박물관 자료를 바탕으로 AI가 생성하며, 오류가 있을 수 있습니다. ' +
         '중요한 내용은 나눔의 집에 문의하여 확인해 주시기 바랍니다.',
+      reportLabel: '문제 신고',
+      reportDone: '신고해 주셔서 감사합니다',
+      errorRateLimit: '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.',
       noAnswer: '죄송합니다. 답변을 찾지 못했습니다.',
       errorGeneric: '문제가 발생했습니다. 다시 시도해 주세요.',
       errorNetwork: '서버에 연결할 수 없습니다. 연결 상태를 확인한 후 다시 시도해 주세요.',
@@ -97,6 +103,9 @@
       footerDisclaimer:
         '回答は博物館の資料をもとにAIが生成しており、誤りが含まれる場合があります。' +
         '重要な内容はナヌムの家にお問い合わせのうえご確認ください。',
+      reportLabel: '問題を報告',
+      reportDone: 'ご報告ありがとうございます',
+      errorRateLimit: 'リクエストが多すぎます。少し待ってからもう一度お試しください。',
       noAnswer: '申し訳ありません。回答が見つかりませんでした。',
       errorGeneric: '問題が発生しました。もう一度お試しください。',
       errorNetwork: 'サーバーに接続できませんでした。接続を確認して再度お試しください。',
@@ -124,6 +133,9 @@
       ],
       footerDisclaimer:
         '回答由AI根据博物馆资料生成，可能存在错误。重要信息请与分享之家联系确认。',
+      reportLabel: '报告问题',
+      reportDone: '感谢您的反馈',
+      errorRateLimit: '请求过多，请稍后再试。',
       noAnswer: '抱歉，未找到答案。',
       errorGeneric: '出现问题，请重试。',
       errorNetwork: '无法连接服务器，请检查网络后重试。',
@@ -157,6 +169,9 @@
       footerDisclaimer:
         'Las respuestas son generadas por IA a partir de los registros del museo y pueden ' +
         'contener errores. Para confirmar detalles importantes, contacte con la Casa del Compartir.',
+      reportLabel: 'Informar de un problema',
+      reportDone: 'Gracias por informar',
+      errorRateLimit: 'Demasiadas solicitudes. Espere un momento e inténtelo de nuevo.',
       noAnswer: 'Lo sentimos, no se encontró ninguna respuesta.',
       errorGeneric: 'Algo salió mal. Inténtelo de nuevo.',
       errorNetwork: 'No se pudo conectar con el servidor. Compruebe su conexión e inténtelo de nuevo.',
@@ -191,6 +206,9 @@
         'Les réponses sont générées par une IA à partir des documents du musée et peuvent ' +
         'contenir des erreurs. Pour confirmer les informations importantes, veuillez contacter ' +
         'la Maison du Partage.',
+      reportLabel: 'Signaler un problème',
+      reportDone: 'Merci pour votre signalement',
+      errorRateLimit: 'Trop de requêtes. Veuillez patienter un instant et réessayer.',
       noAnswer: 'Désolé, aucune réponse n’a été trouvée.',
       errorGeneric: 'Une erreur s’est produite. Veuillez réessayer.',
       errorNetwork: 'Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.',
@@ -225,6 +243,9 @@
         'Die Antworten werden von einer KI auf Grundlage der Museumsunterlagen erstellt und ' +
         'können Fehler enthalten. Bitte wenden Sie sich zur Bestätigung wichtiger Angaben an ' +
         'das House of Sharing.',
+      reportLabel: 'Problem melden',
+      reportDone: 'Danke für Ihre Meldung',
+      errorRateLimit: 'Zu viele Anfragen. Bitte warten Sie einen Moment und versuchen Sie es erneut.',
       noAnswer: 'Leider wurde keine Antwort gefunden.',
       errorGeneric: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.',
       errorNetwork: 'Der Server ist nicht erreichbar. Bitte prüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
@@ -314,6 +335,33 @@
     return wrap;
   }
 
+  function addReportButton(bubble, question, answer) {
+    const wrap = bubble.parentElement;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'report-btn';
+    btn.textContent = t.reportLabel;
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      try {
+        await fetch('/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            question,
+            answer,
+            language: langSelect ? langSelect.value : 'auto',
+          }),
+        });
+        btn.textContent = t.reportDone;
+        btn.classList.add('is-done');
+      } catch (err) {
+        btn.disabled = false;
+      }
+    });
+    wrap.appendChild(btn);
+  }
+
   async function sendQuestion(question) {
     if (!question) return;
 
@@ -332,12 +380,17 @@
       loadingEl.remove();
 
       if (!res.ok) {
-        const bubble = appendMessage('bot', data.response || t.errorGeneric);
+        const message = res.status === 429
+          ? t.errorRateLimit
+          : (data.response || t.errorGeneric);
+        const bubble = appendMessage('bot', message);
         bubble.classList.add('is-error');
         return;
       }
 
-      appendMessage('bot', data.response || t.noAnswer);
+      const answer = data.response || t.noAnswer;
+      const bubble = appendMessage('bot', answer);
+      addReportButton(bubble, question, answer);
     } catch (err) {
       loadingEl.remove();
       const bubble = appendMessage('bot', t.errorNetwork);

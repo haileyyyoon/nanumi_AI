@@ -334,6 +334,39 @@ body {
   color: #6e2c1c;
 }
 
+/* ---------- Report-an-issue button ---------- */
+
+.report-btn {
+  align-self: flex-start;
+  margin: 6px 4px 0;
+  background: none;
+  border: none;
+  padding: 2px 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  color: #9a927c;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.report-btn:hover {
+  color: #a6432e;
+  text-decoration: underline;
+}
+
+.report-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.report-btn.is-done,
+.report-btn:disabled {
+  color: #9a927c;
+  cursor: default;
+  text-decoration: none;
+}
+
 /* ---------- Suggestion chips ---------- */
 
 .suggestions-label {
