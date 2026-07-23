@@ -265,7 +265,6 @@
     German: 'de',
   };
 
-  const STORAGE_KEY = 'cw-answer-language';
   let t = I18N.en; // current chrome translation set
 
   function scrollToBottom() {
@@ -417,11 +416,6 @@
   if (langSelect) {
     langSelect.addEventListener('change', () => {
       applyLanguage(langSelect.value);
-      try {
-        localStorage.setItem(STORAGE_KEY, langSelect.value);
-      } catch (err) {
-        // localStorage may be unavailable (private mode); selection still works for this session.
-      }
     });
   }
 
@@ -438,16 +432,13 @@
   }
 
   // ----- Init --------------------------------------------------------------
-  let saved = 'auto';
-  try {
-    saved = localStorage.getItem(STORAGE_KEY) || 'auto';
-  } catch (err) {
-    // ignore
+  // Always start in English. The interface deliberately does NOT remember a
+  // previous visitor's language, so on a shared/kiosk device each new visitor
+  // begins in English and can switch with the selector.
+  if (langSelect) {
+    langSelect.value = 'English';
   }
-  if (langSelect && CHROME_FOR_VALUE[saved]) {
-    langSelect.value = saved;
-  }
-  applyLanguage(langSelect ? langSelect.value : 'auto');
+  applyLanguage(langSelect ? langSelect.value : 'English');
 
   userInput.focus();
 })();
