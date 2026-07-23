@@ -265,6 +265,7 @@
     German: 'de',
   };
 
+  const STORAGE_KEY = 'cw-answer-language';
   let t = I18N.en; // current chrome translation set
 
   function scrollToBottom() {
@@ -416,6 +417,11 @@
   if (langSelect) {
     langSelect.addEventListener('change', () => {
       applyLanguage(langSelect.value);
+      try {
+        localStorage.setItem(STORAGE_KEY, langSelect.value);
+      } catch (err) {
+        // localStorage may be unavailable (private mode); selection still works for this session.
+      }
     });
   }
 
@@ -432,11 +438,16 @@
   }
 
   // ----- Init --------------------------------------------------------------
-  // Always start in English. The interface deliberately does NOT remember a
-  // previous visitor's language, so on a shared/kiosk device each new visitor
-  // begins in English and can switch with the selector.
-  if (langSelect) {
-    langSelect.value = 'English';
+  // First-time visitors start in English; after a visitor picks a language it
+  // is remembered on this device (localStorage) and restored on the next load.
+  let saved = 'English';
+  try {
+    saved = localStorage.getItem(STORAGE_KEY) || 'English';
+  } catch (err) {
+    // ignore
+  }
+  if (langSelect && CHROME_FOR_VALUE[saved]) {
+    langSelect.value = saved;
   }
   applyLanguage(langSelect ? langSelect.value : 'English');
 
